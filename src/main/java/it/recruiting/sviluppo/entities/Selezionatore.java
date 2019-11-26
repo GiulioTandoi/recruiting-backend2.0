@@ -25,12 +25,13 @@ public class Selezionatore {
 	@Column(name = "stato")
 	private String stato;
 	
-	public Selezionatore(String nome, String cognome, String email, String stato) {
+	public Selezionatore(String nome, String cognome, String email, String stato, String password) {
 		
 		this.nome= nome;
 		this.cognome= cognome;
 		this.email= email;
 		this.stato = stato;
+		this.password= password;
 		
 	}
 	
