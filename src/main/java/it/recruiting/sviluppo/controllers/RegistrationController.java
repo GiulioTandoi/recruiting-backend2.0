@@ -27,14 +27,14 @@ public class RegistrationController {
 	public @ResponseBody ResponseEntity<String> registrationUser(@RequestBody RegistrazionePojo regPojo) throws SQLException {
 
 		
-		if (!controller.checkIfRegistered(regPojo.getEmail())) {
-			
-			return new ResponseEntity<>(Stringhe.UTENTEESISTENTE, HttpStatus.CONFLICT);
-			
-		}else {
+//		if (!controller.checkIfRegistered(regPojo.getEmail())) {
+//			
+//			return new ResponseEntity<>(Stringhe.UTENTEESISTENTE, HttpStatus.CONFLICT);
+//			
+//		}else {
 			selezionatore = new Selezionatore(regPojo.getNome(), regPojo.getCognome(),
 				regPojo.getPassword(), regPojo.getEmail(), regPojo.getStato());
-		}
+//		}
 		// effettuo la registrazione
 		boolean creato = controller.registration(selezionatore);
 		if (creato){

@@ -16,7 +16,7 @@ public class SelezionatoreService {
 	
 	public int login ( String mail, String password ) {
 		 
-		Selezionatore selezionatore = selezionatoreRepo.findByMailAndPassword(mail,password);
+		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(mail,password);
 		
 		return selezionatore.getId();
 	}
@@ -31,15 +31,15 @@ public class SelezionatoreService {
 		return false;
 	}
 	
-	public boolean checkIfRegistered (String email) {
-		
-		Selezionatore selezionatore = selezionatoreRepo.findByMail(email);
-		if (selezionatore!=null) {
-			return false;
-		}
-		return true;
-		
-	}
+//	public boolean checkIfRegistered (String email) {
+//		
+//		Selezionatore selezionatore = selezionatoreRepo.findByMail(email);
+//		if (selezionatore!=null) {
+//			return false;
+//		}
+//		return true;
+//		
+//	}
 	
 
 }
