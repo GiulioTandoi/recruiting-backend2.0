@@ -81,19 +81,7 @@
 //	}
 //	//===================================================== Home ========================================================================
 //	
-//	@GetMapping(path="home")
-//	public Response home() throws SQLException{
-//		
-//		ArrayList<Profilo> listaProfiliHome = new ArrayList<Profilo>();
-//		listaProfiliHome= sd.home();
-//		
-//		Response response = new Response(listaProfiliHome.size(), listaProfiliHome);
-//		
-//		return response;
-//		
-//		
-//		
-//	}
+
 //	
 //	// ===================================================== Modifica dati profilo ======================================================
 //	
