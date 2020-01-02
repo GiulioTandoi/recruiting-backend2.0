@@ -2,6 +2,7 @@ package it.recruiting.sviluppo.controllers;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,10 +21,13 @@ import it.recruiting.sviluppo.services.SelezionatoreService;
 @CrossOrigin(origins= "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
 public class LoginController {
 
+	@Autowired
+	SelezionatoreService service;
+	
+	
 	@RequestMapping(value="login",  method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Integer> loginUser (@RequestBody LoginControllerPojo logPojo) throws SQLException {
 		
-		SelezionatoreService service = new SelezionatoreService();
 		int id = service.login(logPojo.getEmail(), logPojo.getPassword());
 		if (id==-1) {
 			

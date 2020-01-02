@@ -31,15 +31,15 @@ public class SelezionatoreService {
 		return false;
 	}
 	
-//	public boolean checkIfRegistered (String email) {
-//		
-//		Selezionatore selezionatore = selezionatoreRepo.findByMail(email);
-//		if (selezionatore!=null) {
-//			return false;
-//		}
-//		return true;
-//		
-//	}
+	public boolean checkIfRegistered (String email) {
+		
+		Selezionatore selezionatore = selezionatoreRepo.findByEmail(email);
+		if (selezionatore!=null) {
+			return false;
+		}
+		return true;
+		
+	}
 	
 
 }
