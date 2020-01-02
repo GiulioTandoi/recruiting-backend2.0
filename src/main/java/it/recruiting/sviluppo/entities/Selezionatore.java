@@ -25,6 +25,10 @@ public class Selezionatore {
 	@Column(name = "stato")
 	private String stato;
 	
+	public Selezionatore () {
+		
+	}
+	
 	public Selezionatore(String nome, String cognome, String email, String stato, String password) {
 		
 		this.nome= nome;

@@ -14,10 +14,11 @@ public class SelezionatoreService {
 	@Autowired
 	SelezionatoreRepository selezionatoreRepo;
 	
-	public int login ( String mail, String password ) {
-		 
-		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(mail,password);
-		
+	
+	public int login ( String email, String password ) {
+		System.out.println("Email and password: "+email + " "+ password );
+		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(email,password);
+		System.out.println(selezionatore);
 		return selezionatore.getId();
 	}
 	

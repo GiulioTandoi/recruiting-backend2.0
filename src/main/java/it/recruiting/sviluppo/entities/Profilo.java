@@ -25,6 +25,10 @@ public class Profilo {
 	@Column(name = "link")
 	private String link;
 	
+	public Profilo () {
+		
+	}
+	
 	public Profilo(int id, String nome, String cognome, int eta, String qualifica, String disponibilita ,String link) {
 		
 		this.nome= nome;
