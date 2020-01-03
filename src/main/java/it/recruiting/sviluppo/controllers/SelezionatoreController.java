@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.recruiting.sviluppo.entities.Profilo;
 import it.recruiting.sviluppo.entities.Response;
 import it.recruiting.sviluppo.entities.Selezionatore;
 import it.recruiting.sviluppo.pojo.AggiuntaPreferitoPojo;
-import it.recruiting.sviluppo.repos.PreferitiRepository;
-import it.recruiting.sviluppo.repos.SelezionatoreRepository;
+import it.recruiting.sviluppo.pojo.RegistrazionePojo;
 import it.recruiting.sviluppo.services.ProfiloService;
 import it.recruiting.sviluppo.services.SelezionatoreService;
 
@@ -26,8 +26,6 @@ import it.recruiting.sviluppo.services.SelezionatoreService;
 @CrossOrigin(origins= "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
 public class SelezionatoreController {
 
-	@Autowired
-	SelezionatoreRepository repo;
 	
 	@Autowired
 	SelezionatoreService selezionatoreService;
@@ -39,7 +37,7 @@ public class SelezionatoreController {
 	public Selezionatore visualizzaDettagli (@RequestParam(value="id") int id ) throws SQLException{
 		
 		
-		Selezionatore selezionatore= repo.findById(id);
+		Selezionatore selezionatore= selezionatoreService.showSelezionatoreDetails(id);
 		
 		return selezionatore;
 	}
@@ -73,31 +71,25 @@ public class SelezionatoreController {
 		return response;
 		
 	}
-//	
+
 //	@GetMapping(path="linkPreferito")
 //	public String ottieniLink(@RequestParam(value="id") int id) throws SQLException {
 //		
 //		String link=null;
-//		link= pDAO.ottieniLink(id);
+////		link= pDAO.ottieniLink(id);
 //		return link;
 //		
-//	}
-//	
-//	@GetMapping(path="profilo")
-//	public Profilo ottieniDettaglioPreferito(@RequestParam(value="id") int id) throws SQLException{
-//		
-//		Profilo p= pDAO.dettaglioPreferito(id);
-//		return p;
 //	}
 
 //	
 //	// ===================================================== Modifica dati profilo ======================================================
 //	
-//	@PostMapping(path="modificaDettagli")
-//	public @ResponseBody Selezionatore aggiornaProfilo (@RequestBody RegistrazionePojo selezionatore) throws SQLException{
-//		Selezionatore s = sd.updateSelezionatore(selezionatore);
-//		return s;
-//	}
+	@PostMapping(path="modificaDettagli")
+	public @ResponseBody Selezionatore aggiornaProfilo (@RequestBody RegistrazionePojo selezionatore) throws SQLException{
+		
+		Selezionatore newSelezionatore = selezionatoreService.updateSelezionatoreDetails(selezionatore);
+		return newSelezionatore;
+	}
 //	
 ////	@PostMapping(path="modificaEmail")
 ////	public @ResponseBody Selezionatore aggiornaEmail (@RequestBody RegistrazionePojo regPojo) throws SQLException {

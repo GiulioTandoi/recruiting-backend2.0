@@ -42,6 +42,30 @@ public class Selezionatore {
 		
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setStato(String stato) {
+		this.stato = stato;
+	}
+
 	public String getStato() {
 		return stato;
 	}

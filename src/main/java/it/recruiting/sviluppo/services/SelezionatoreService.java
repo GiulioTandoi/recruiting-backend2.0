@@ -2,12 +2,15 @@ package it.recruiting.sviluppo.services;
 
 import java.util.ArrayList;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.recruiting.sviluppo.entities.ElencoPreferiti;
 import it.recruiting.sviluppo.entities.Profilo;
 import it.recruiting.sviluppo.entities.Selezionatore;
+import it.recruiting.sviluppo.pojo.RegistrazionePojo;
 import it.recruiting.sviluppo.repos.PreferitiRepository;
 import it.recruiting.sviluppo.repos.ProfiloRepository;
 import it.recruiting.sviluppo.repos.SelezionatoreRepository;
@@ -52,6 +55,11 @@ public class SelezionatoreService {
 		return true;
 		
 	}
+
+	public Selezionatore showSelezionatoreDetails (int id) {
+		
+		return selezionatoreRepo.findById(id); 
+	}
 	
 	public ArrayList<Profilo> getFavourites (int idSelezionatore){
 		
@@ -62,10 +70,22 @@ public class SelezionatoreService {
 		for (ElencoPreferiti preferito : idFavourites) {
 			idProfiliPreferiti.add(preferito.getIdProfilo());
 		}
-		System.out.println("IdProfiliPreferiti: "+idProfiliPreferiti);
 		ArrayList<Profilo> favourites = profiloRepo.findByIdIn(idProfiliPreferiti);
 		System.out.println("Favourites: "+favourites);
 		return favourites;
+		
+	}
+	
+	@Transactional
+	public Selezionatore updateSelezionatoreDetails(RegistrazionePojo selezionatore) {
+		
+		Selezionatore newSelezionatore = selezionatoreRepo.findById(selezionatore.getId());
+		
+		newSelezionatore.setNome(selezionatore.getNome());
+		newSelezionatore.setCognome(selezionatore.getCognome());
+		newSelezionatore.setEmail(selezionatore.getEmail());
+		newSelezionatore.setStato(selezionatore.getStato());
+		return selezionatoreRepo.save(newSelezionatore);
 		
 	}
 	
