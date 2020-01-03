@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+// E' importante che ci sia un'Entity per ogni tabella del DB così che i metodi di query JPA siano più accurati e possano funzionare collegando
+// direttamente il nome del Generics impolementato dalla CrudRepository con il nome della tabella sul DB 
 @Entity
 @Table(name = "Selezionatore")
 public class Selezionatore { 

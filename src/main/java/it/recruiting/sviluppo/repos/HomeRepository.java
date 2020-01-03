@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import it.recruiting.sviluppo.entities.Profilo;
 
-@Repository
+@Repository(value = "it.recruiting.sviluppo.repos.HomeRepository")
 public interface HomeRepository extends CrudRepository<Profilo, Long>{
 	
 	public ArrayList<Profilo> findAll();

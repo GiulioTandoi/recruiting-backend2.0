@@ -10,7 +10,9 @@ public interface SelezionatoreRepository extends CrudRepository<Selezionatore, L
 
 	// Estendendo la classe CrudRepository posso dichiarare dei metodi in questo modo che attraverso la chiave "find" oppure "order"
 	// preimposta il metodo a fare operazioni come la Select oppure l'order By e poi 
+	// !!IMPORTANTE per ogni entity esiste una repository, non è detto il contrario come in questo caso, non esiste un'entity Home 
 	public Selezionatore findByEmailAndPassword(String email, String password);
-	public boolean findById(int id);
+	public Selezionatore findById(int id);
 	public Selezionatore findByEmail ( String email);
+	
 }

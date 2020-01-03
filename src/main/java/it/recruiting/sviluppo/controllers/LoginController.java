@@ -22,13 +22,13 @@ import it.recruiting.sviluppo.services.SelezionatoreService;
 public class LoginController {
 
 	@Autowired
-	SelezionatoreService service;
+	SelezionatoreService selezionatoreService;
 	
 	
 	@RequestMapping(value="login",  method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Integer> loginUser (@RequestBody LoginControllerPojo logPojo) throws SQLException {
 		
-		int id = service.login(logPojo.getEmail(), logPojo.getPassword());
+		int id = selezionatoreService.login(logPojo.getEmail(), logPojo.getPassword());
 		if (id==-1) {
 			
 			return new ResponseEntity<>( id, HttpStatus.BAD_REQUEST );  // ResponseEntity è un oggetto usato per ritornare qualcosa nel body

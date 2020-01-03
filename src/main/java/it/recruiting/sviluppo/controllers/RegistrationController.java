@@ -2,7 +2,7 @@ package it.recruiting.sviluppo.controllers;
 
 import java.sql.SQLException;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +21,9 @@ import it.recruiting.sviluppo.services.SelezionatoreService;
 @CrossOrigin(origins= "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
 public class RegistrationController {
 	
-	SelezionatoreService controller =new SelezionatoreService();
+	@Autowired
+	SelezionatoreService selezionatoreService;
+	
 	Selezionatore selezionatore = null;
 	@PostMapping("registration")
 	public @ResponseBody ResponseEntity<String> registrationUser(@RequestBody RegistrazionePojo regPojo) throws SQLException {
@@ -36,7 +38,7 @@ public class RegistrationController {
 				regPojo.getPassword(), regPojo.getEmail(), regPojo.getStato());
 //		}
 		// effettuo la registrazione
-		boolean creato = controller.registration(selezionatore);
+		boolean creato = selezionatoreService.registration(selezionatore);
 		if (creato){
 			
 			return new ResponseEntity<>(Stringhe.SUCCESSOREGISTRAZIONE, HttpStatus.CREATED); 
