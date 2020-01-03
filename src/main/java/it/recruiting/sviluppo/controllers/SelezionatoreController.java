@@ -6,14 +6,18 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.recruiting.sviluppo.entities.Profilo;
 import it.recruiting.sviluppo.entities.Response;
 import it.recruiting.sviluppo.entities.Selezionatore;
+import it.recruiting.sviluppo.pojo.AggiuntaPreferitoPojo;
 import it.recruiting.sviluppo.repos.PreferitiRepository;
 import it.recruiting.sviluppo.repos.SelezionatoreRepository;
+import it.recruiting.sviluppo.services.ProfiloService;
 import it.recruiting.sviluppo.services.SelezionatoreService;
 
 
@@ -28,6 +32,9 @@ public class SelezionatoreController {
 	@Autowired
 	SelezionatoreService selezionatoreService;
 	
+	@Autowired
+	ProfiloService profiloService;
+	
 	@GetMapping(path="dettagliSelezionatore")
 	public Selezionatore visualizzaDettagli (@RequestParam(value="id") int id ) throws SQLException{
 		
@@ -38,17 +45,16 @@ public class SelezionatoreController {
 	}
 //	
 //	//==================================================== Preferiti ===================================================================
-//	
-//	@PostMapping(path="inserisciPreferito")
-//	public String inserisciPreferito(@RequestBody AggiuntaPreferitoPojo pPojo) throws SQLException{
-//		
-//		System.out.println(pPojo.getIdSelezionatore() + " "+ pPojo.getIdProfilo());
-//		pDAO.insertListaPreferiti(pPojo.getIdSelezionatore(), pPojo.getIdProfilo());
-//		
-//		return new String ("Aggiunta effettuata!");
-//		
-//	}
-//	
+	
+	@PostMapping(path="inserisciPreferito")
+	public String inserisciPreferito(@RequestBody AggiuntaPreferitoPojo pPojo) throws SQLException{
+		
+		System.out.println(pPojo.getIdSelezionatore() + " "+ pPojo.getIdProfilo());
+		profiloService.insertInListaPreferiti(pPojo);
+		return new String ("Aggiunta effettuata!");
+		
+	}
+	
 	@GetMapping(path="listaPreferiti")
 	public Response mostraListaPreferiti (@RequestParam(value="id_selezionatore") int id ) throws SQLException{
 		
