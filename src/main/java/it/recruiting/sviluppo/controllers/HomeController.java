@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.recruiting.sviluppo.entities.Profilo;
@@ -30,4 +32,10 @@ public class HomeController {
 		return response;
 		
 	}
+	
+	@GetMapping(path="search")
+	public void search(@RequestParam(value = "type") String searchType) throws SQLException{
+		
+	}
+	
 }

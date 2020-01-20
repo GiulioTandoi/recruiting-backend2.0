@@ -90,43 +90,6 @@ public class SelezionatoreController {
 		Selezionatore newSelezionatore = selezionatoreService.updateSelezionatoreDetails(selezionatore);
 		return newSelezionatore;
 	}
-//	
-////	@PostMapping(path="modificaEmail")
-////	public @ResponseBody Selezionatore aggiornaEmail (@RequestBody RegistrazionePojo regPojo) throws SQLException {
-////		
-////		
-////		Selezionatore selezionatore = sd.updateEmail(regPojo.getEmail(), regPojo.getId());
-////		
-////		return selezionatore;
-////	}
-////	
-////	@PostMapping(path="modificaNome")
-////	public @ResponseBody Selezionatore aggiornaNome (@RequestBody RegistrazionePojo regPojo) throws SQLException {
-////		
-////		
-////		Selezionatore selezionatore = sd.updateNome(regPojo.getNome(), regPojo.getId());
-////		
-////		return selezionatore;
-////	}
-////	
-////	@PostMapping(path="modificaCognome")
-////	public @ResponseBody Selezionatore aggiornaCognome (@RequestBody RegistrazionePojo regPojo) throws SQLException {
-////		
-////		
-////		Selezionatore selezionatore = sd.updateCognome(regPojo.getCognome(), regPojo.getId());
-////		
-////		return selezionatore;
-////	}
-////	
-////	@PostMapping(path="modificaStato")
-////	public @ResponseBody Selezionatore aggiornaStato (@RequestBody RegistrazionePojo regPojo) throws SQLException {
-////		
-////		
-////		Selezionatore selezionatore = sd.updateStato(regPojo.getStato(), regPojo.getId());
-////		
-////		return selezionatore;
-////	}
-//	
 //	// ===================================================== Ottieni Link alla ListaPreferiti ===========================================
 //	
 //	@GetMapping(path="ottieniLinkLista")
