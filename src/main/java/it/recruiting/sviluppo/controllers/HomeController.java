@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +33,13 @@ public class HomeController {
 	}
 	
 	@GetMapping(path="search")
-	public void search(@RequestParam(value = "type") String searchType) throws SQLException{
+	public void search(@RequestParam("type") String searchType, @RequestParam("value") String value) throws SQLException{
+		ArrayList<Profilo> profili = new ArrayList<Profilo>();
+		System.out.println("====================================================================================");
+		System.out.println("Tipo di ricerca "+ searchType +"\n Valore passato "+ value);
+		if (searchType.equals("Name")) {
+			profili= repo.findByNome(value);
+		}
 		
 	}
 	

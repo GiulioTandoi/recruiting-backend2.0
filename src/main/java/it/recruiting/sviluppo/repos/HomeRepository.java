@@ -11,5 +11,6 @@ import it.recruiting.sviluppo.entities.Profilo;
 public interface HomeRepository extends CrudRepository<Profilo, Long>{
 	
 	public ArrayList<Profilo> findAll();
+	public ArrayList<Profilo> findByNome(String nome);
 	
 }
