@@ -24,12 +24,14 @@ public class Profilo {
 	private String disponibilita;
 	@Column(name = "link")
 	private String link;
+	@Column(name= "imagePath")
+	private String imagePath;
 	
 	public Profilo () {
 		
 	}
 	
-	public Profilo(int id, String nome, String cognome, int eta, String qualifica, String disponibilita ,String link) {
+	public Profilo(int id, String nome, String cognome, int eta, String qualifica, String disponibilita ,String link, String imagePath) {
 		
 		this.nome= nome;
 		this.cognome= cognome;
@@ -38,6 +40,7 @@ public class Profilo {
 		this.disponibilita= disponibilita;
 		this.link = link;
 		this.id=id;
+		this.imagePath = imagePath;
 		
 	}
 	
@@ -73,6 +76,14 @@ public class Profilo {
 	public String toString() {
 		return "Profilo [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", eta=" + eta + ", qualifica="
 				+ qualifica + ", disponibilita=" + disponibilita + ", link=" + link + "]";
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 }

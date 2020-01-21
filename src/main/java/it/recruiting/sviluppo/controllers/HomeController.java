@@ -44,7 +44,7 @@ public class HomeController {
 			profili= repo.findByNome(value);
 			response = new Response(profili.size(), profili);
 		}
-		
+		System.out.println(profili);
 		return response;
 	}
 	
