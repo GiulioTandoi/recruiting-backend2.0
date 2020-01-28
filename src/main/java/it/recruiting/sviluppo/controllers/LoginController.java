@@ -30,7 +30,7 @@ public class LoginController {
 		
 		int id = selezionatoreService.login(logPojo.getEmail(), logPojo.getPassword());
 		if (id==-1) {
-			
+			System.out.println("Errore");
 			return new ResponseEntity<>( id, HttpStatus.BAD_REQUEST );  // ResponseEntity è un oggetto usato per ritornare qualcosa nel body
 			//della post al frontend e questo qualcosa è l'id che il dao ottiene dalla query
 			

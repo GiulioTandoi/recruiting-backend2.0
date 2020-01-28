@@ -33,6 +33,9 @@ public class SelezionatoreService {
 		System.out.println("Email and password: "+email + " "+ password );
 		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(email,password);
 		System.out.println(selezionatore);
+		if (selezionatore == null) {
+			return -1;
+		}
 		return selezionatore.getId();
 	}
 	
