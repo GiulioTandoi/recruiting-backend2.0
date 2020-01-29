@@ -26,8 +26,8 @@ public class Profilo {
 	private String disponibilita;
 	@Column(name = "link")
 	private String link;
-	@Column(name= "imagePath")
-	private String imagePath;
+	@Column(name= "image")
+	private String image;
 	
 	public Profilo () {
 		
@@ -42,7 +42,7 @@ public class Profilo {
 		this.disponibilita= disponibilita;
 		this.link = link;
 		this.id=id;
-		this.imagePath = imagePath;
+		this.image = imagePath;
 		
 	}
 	
@@ -74,18 +74,19 @@ public class Profilo {
 		return id;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String imagePath) {
+		this.image = imagePath;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Profilo [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", eta=" + eta + ", qualifica="
 				+ qualifica + ", disponibilita=" + disponibilita + ", link=" + link + "]";
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
 	}
 
 }
