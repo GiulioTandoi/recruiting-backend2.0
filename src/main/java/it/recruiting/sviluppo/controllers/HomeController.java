@@ -33,18 +33,27 @@ public class HomeController {
 	}
 	
 	@GetMapping(path="search")
-	public Response search(@RequestParam("searchingType") String searchingType, @RequestParam("value") String value) throws SQLException{
+	public Response search(@RequestParam("value") String value) throws SQLException{
 		ArrayList<Profilo> profili = new ArrayList<Profilo>();
 		System.out.println("====================================================================================");
-		System.out.println("Tipo di ricerca "+ searchingType +"\n Valore passato "+ value);
+		System.out.println("VAlore Passato "+ value);
 		
 		Response response = null;
 		
-		if (searchingType.equals("Name")) {
-			profili= repo.findByNome(value);
+		profili = repo.findByNomeOrCognomeOrQualificaIsContaining(value);
+		
+//		if (searchingType.equals("Name")) {
+//			profili= repo.findByNome(value);
+//			response = new Response(profili.size(), profili);
+//		}
+		System.out.println(profili);
+		
+		if (profili == null) {
+			profili = repo.findAll();
+			response = new Response(profili.size(), profili);
+		}else {
 			response = new Response(profili.size(), profili);
 		}
-		System.out.println(profili);
 		return response;
 	}
 	
