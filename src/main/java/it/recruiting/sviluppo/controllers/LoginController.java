@@ -35,7 +35,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		if (id == -1) {
-			System.out.println("Errore");
+			System.out.println("Errore, utente non trovato");
 			return new ResponseEntity<>(id, HttpStatus.BAD_REQUEST); // ResponseEntity è un oggetto usato per ritornare
 																		// qualcosa nel body
 			// della post al frontend e questo qualcosa è l'id che il dao ottiene dalla

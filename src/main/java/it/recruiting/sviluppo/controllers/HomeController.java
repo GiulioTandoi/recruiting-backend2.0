@@ -44,7 +44,7 @@ public class HomeController {
 	public Response search(@RequestParam("value") String value) throws SQLException {
 		ArrayList<Profilo> profili = new ArrayList<Profilo>();
 		System.out.println("====================================================================================");
-		System.out.println("VAlore Passato " + value);
+		System.out.println("Valore Passato " + value);
 
 		Response response = null;
 
