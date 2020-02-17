@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import it.recruiting.sviluppo.entities.ElencoPreferiti;
 
 @Repository(value = "it.recruiting.sviluppo.repos.PreferitiRepository")
-public interface PreferitiRepository extends CrudRepository<ElencoPreferiti, Long>{
+public interface PreferitiRepository extends CrudRepository<ElencoPreferiti, Long> {
 
 	public ArrayList<ElencoPreferiti> findByIdSelezionatore(int idselezionatore);
-	
+
 }

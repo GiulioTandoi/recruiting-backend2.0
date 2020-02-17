@@ -10,17 +10,16 @@ import javax.persistence.Table;
 @Entity
 public class ElencoPreferiti {
 
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column ( name = "idprofilo")
+	@Column(name = "idprofilo")
 	private int idProfilo;
 	@Column(name = "idselezionatore")
 	private int idSelezionatore;
-	
-	public ElencoPreferiti () {
-		
+
+	public ElencoPreferiti() {
+
 	}
 
 	public ElencoPreferiti(int idProfilo, int idSelezionatore) {
@@ -44,7 +43,5 @@ public class ElencoPreferiti {
 	public void setIdSelezionatore(int idSelezionatore) {
 		this.idSelezionatore = idSelezionatore;
 	}
-	
-	
-	
+
 }

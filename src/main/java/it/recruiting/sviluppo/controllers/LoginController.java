@@ -18,29 +18,28 @@ import it.recruiting.sviluppo.pojo.LoginControllerPojo;
 import it.recruiting.sviluppo.services.SelezionatoreService;
 
 @RestController
-@CrossOrigin(origins= "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
 public class LoginController {
 
 	@Autowired
 	SelezionatoreService selezionatoreService;
-	
-	
-	@RequestMapping(value="login",  method=RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Integer> loginUser (@RequestBody LoginControllerPojo logPojo) throws SQLException {
-		
-		int id = selezionatoreService.login(logPojo.getEmail(), logPojo.getPassword());
-		if (id==-1) {
-			System.out.println("Errore");
-			return new ResponseEntity<>( id, HttpStatus.BAD_REQUEST );  // ResponseEntity è un oggetto usato per ritornare qualcosa nel body
-			//della post al frontend e questo qualcosa è l'id che il dao ottiene dalla query
-			
-		}
-		
-		return new ResponseEntity<>(id, HttpStatus.OK);
-		
-	}		
-	
-	
-}
-	
 
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<Integer> loginUser(@RequestBody LoginControllerPojo logPojo)
+			throws SQLException {
+
+		int id = selezionatoreService.login(logPojo.getEmail(), logPojo.getPassword());
+		if (id == -1) {
+			System.out.println("Errore");
+			return new ResponseEntity<>(id, HttpStatus.BAD_REQUEST); // ResponseEntity è un oggetto usato per ritornare
+																		// qualcosa nel body
+			// della post al frontend e questo qualcosa è l'id che il dao ottiene dalla
+			// query
+
+		}
+
+		return new ResponseEntity<>(id, HttpStatus.OK);
+
+	}
+
+}

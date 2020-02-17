@@ -16,41 +16,37 @@ import it.recruiting.sviluppo.pojo.RegistrazionePojo;
 import it.recruiting.sviluppo.risorse.Stringhe;
 import it.recruiting.sviluppo.services.SelezionatoreService;
 
-
 @RestController
-@CrossOrigin(origins= "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
 public class RegistrationController {
-	
+
 	@Autowired
 	SelezionatoreService selezionatoreService;
-	
-	Selezionatore selezionatore = null;
-	@PostMapping("registration")
-	public @ResponseBody ResponseEntity<String> registrationUser(@RequestBody RegistrazionePojo regPojo) throws SQLException {
 
-		
+	Selezionatore selezionatore = null;
+
+	@PostMapping("registration")
+	public @ResponseBody ResponseEntity<String> registrationUser(@RequestBody RegistrazionePojo regPojo)
+			throws SQLException {
+
 //		if (!controller.checkIfRegistered(regPojo.getEmail())) {
 //			
 //			return new ResponseEntity<>(Stringhe.UTENTEESISTENTE, HttpStatus.CONFLICT);
 //			
 //		}else {
-			selezionatore = new Selezionatore(regPojo.getNome(), regPojo.getCognome(),
-				regPojo.getPassword(), regPojo.getEmail(), regPojo.getStato());
+		selezionatore = new Selezionatore(regPojo.getNome(), regPojo.getCognome(), regPojo.getPassword(),
+				regPojo.getEmail(), regPojo.getStato());
 //		}
 		// effettuo la registrazione
 		boolean creato = selezionatoreService.registration(selezionatore);
-		if (creato){
-			
-			return new ResponseEntity<>(Stringhe.SUCCESSOREGISTRAZIONE, HttpStatus.CREATED); 
-			
-			
-		}else {		
-		
+		if (creato) {
+
+			return new ResponseEntity<>(Stringhe.SUCCESSOREGISTRAZIONE, HttpStatus.CREATED);
+
+		} else {
+
 			return new ResponseEntity<>(Stringhe.REGISTRAZIONEFALLITA, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
-	
 
 }

@@ -20,56 +20,52 @@ import it.recruiting.sviluppo.pojo.RegistrazionePojo;
 import it.recruiting.sviluppo.services.ProfiloService;
 import it.recruiting.sviluppo.services.SelezionatoreService;
 
-
-
 @RestController
-@CrossOrigin(origins= "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowedHeaders = "*")
 public class SelezionatoreController {
 
-	
 	@Autowired
 	SelezionatoreService selezionatoreService;
-	
+
 	@Autowired
 	ProfiloService profiloService;
-	
-	@GetMapping(path="dettagliSelezionatore")
-	public Selezionatore visualizzaDettagli (@RequestParam(value="id") int id ) throws SQLException{
-		
-		
-		Selezionatore selezionatore= selezionatoreService.showSelezionatoreDetails(id);
-		
+
+	@GetMapping(path = "dettagliSelezionatore")
+	public Selezionatore visualizzaDettagli(@RequestParam(value = "id") int id) throws SQLException {
+
+		Selezionatore selezionatore = selezionatoreService.showSelezionatoreDetails(id);
+
 		return selezionatore;
 	}
 //	
 //	//==================================================== Preferiti ===================================================================
-	
-	@PostMapping(path="inserisciPreferito")
-	public String inserisciPreferito(@RequestBody AggiuntaPreferitoPojo pPojo) throws SQLException{
-		
-		System.out.println(pPojo.getIdSelezionatore() + " "+ pPojo.getIdProfilo());
+
+	@PostMapping(path = "inserisciPreferito")
+	public String inserisciPreferito(@RequestBody AggiuntaPreferitoPojo pPojo) throws SQLException {
+
+		System.out.println(pPojo.getIdSelezionatore() + " " + pPojo.getIdProfilo());
 		profiloService.insertInListaPreferiti(pPojo);
-		return new String ("Aggiunta effettuata!");
-		
+		return new String("Aggiunta effettuata!");
+
 	}
-	
-	@GetMapping(path="listaPreferiti")
-	public Response mostraListaPreferiti (@RequestParam(value="id_selezionatore") int id ) throws SQLException{
-		
-		
-		// TODO devo chiamare un metodo del service che matcha Elencopreferiti e Profili sul db tramite 
-		// gli id e restituisce un arraylist di profilo 
-		
+
+	@GetMapping(path = "listaPreferiti")
+	public Response mostraListaPreferiti(@RequestParam(value = "id_selezionatore") int id) throws SQLException {
+
+		// TODO devo chiamare un metodo del service che matcha Elencopreferiti e Profili
+		// sul db tramite
+		// gli id e restituisce un arraylist di profilo
+
 		ArrayList<Profilo> favouritesList = selezionatoreService.getFavourites(id);
-		
-		if(favouritesList.isEmpty()) {
+
+		if (favouritesList.isEmpty()) {
 			return null;
 		}
-		
-		Response response= new Response(favouritesList.size(), favouritesList);
-		
+
+		Response response = new Response(favouritesList.size(), favouritesList);
+
 		return response;
-		
+
 	}
 
 //	@GetMapping(path="linkPreferito")
@@ -84,9 +80,10 @@ public class SelezionatoreController {
 //	
 //	// ===================================================== Modifica dati profilo ======================================================
 //	
-	@PostMapping(path="modificaDettagli")
-	public @ResponseBody Selezionatore aggiornaProfilo (@RequestBody RegistrazionePojo selezionatore) throws SQLException{
-		
+	@PostMapping(path = "modificaDettagli")
+	public @ResponseBody Selezionatore aggiornaProfilo(@RequestBody RegistrazionePojo selezionatore)
+			throws SQLException {
+
 		Selezionatore newSelezionatore = selezionatoreService.updateSelezionatoreDetails(selezionatore);
 		return newSelezionatore;
 	}

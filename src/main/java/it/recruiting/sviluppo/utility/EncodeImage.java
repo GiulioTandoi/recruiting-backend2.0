@@ -10,15 +10,14 @@ public class EncodeImage {
 
 	public String encode(String toBeEncoded) {
 		byte[] fileContent;
-		String encoded= null;
+		String encoded = null;
 		try {
 			fileContent = FileUtils.readFileToByteArray(new File(toBeEncoded));
-			 encoded = Base64.getEncoder().encodeToString(fileContent);
+			encoded = Base64.getEncoder().encodeToString(fileContent);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return encoded;
 	}
 }

@@ -14,10 +14,10 @@ public class ProfiloService {
 
 	@Autowired
 	ProfiloRepository profiloRepo;
-	
+
 	@Autowired
 	PreferitiRepository preferitiRepo;
-	
+
 	public boolean insertInListaPreferiti(AggiuntaPreferitoPojo pojo) {
 		ElencoPreferiti elencoPreferiti = new ElencoPreferiti();
 		elencoPreferiti.setIdProfilo(pojo.getIdProfilo());
@@ -25,12 +25,12 @@ public class ProfiloService {
 		preferitiRepo.save(elencoPreferiti);
 		return true;
 	}
-	
-	public Profilo showStandardProfileDetails (int id) {
-		
+
+	public Profilo showStandardProfileDetails(int id) {
+
 		Profilo profilo = profiloRepo.findById(id);
 		return profilo;
-		
+
 	}
-	
+
 }

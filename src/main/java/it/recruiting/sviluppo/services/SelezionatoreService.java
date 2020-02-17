@@ -19,78 +19,76 @@ import it.recruiting.sviluppo.repos.SelezionatoreRepository;
 // durante le chiamate
 @Service
 public class SelezionatoreService {
-	
+
 	@Autowired
 	SelezionatoreRepository selezionatoreRepo;
-	
+
 	@Autowired
 	PreferitiRepository preferitiRepo;
-	
+
 	@Autowired
 	ProfiloRepository profiloRepo;
-	
-	public int login ( String email, String password ) {
-		System.out.println("Email and password: "+email + " "+ password );
-		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(email,password);
+
+	public int login(String email, String password) {
+		System.out.println("Email and password: " + email + " " + password);
+		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(email, password);
 		System.out.println(selezionatore);
 		if (selezionatore == null) {
 			return -1;
 		}
 		return selezionatore.getId();
 	}
-	
-	
+
 	public boolean registration(Selezionatore selezionatore) {
-		
+
 		int idVerifica = selezionatoreRepo.save(selezionatore).getId();
-		if (idVerifica>1) {
+		if (idVerifica > 1) {
 			return true;
 		}
 		return false;
 	}
-	
-	public boolean checkIfRegistered (String email) {
-		
+
+	public boolean checkIfRegistered(String email) {
+
 		Selezionatore selezionatore = selezionatoreRepo.findByEmail(email);
-		if (selezionatore!=null) {
+		if (selezionatore != null) {
 			return false;
 		}
 		return true;
-		
+
 	}
 
-	public Selezionatore showSelezionatoreDetails (int id) {
-		
-		return selezionatoreRepo.findById(id); 
+	public Selezionatore showSelezionatoreDetails(int id) {
+
+		return selezionatoreRepo.findById(id);
 	}
-	
-	public ArrayList<Profilo> getFavourites (int idSelezionatore){
-		
-		ArrayList <Integer> idProfiliPreferiti = new ArrayList<Integer>();
-		
+
+	public ArrayList<Profilo> getFavourites(int idSelezionatore) {
+
+		ArrayList<Integer> idProfiliPreferiti = new ArrayList<Integer>();
+
 		ArrayList<ElencoPreferiti> idFavourites = preferitiRepo.findByIdSelezionatore(idSelezionatore);
-		System.out.println("IdFavourites: "+ idFavourites);
+		System.out.println("IdFavourites: " + idFavourites);
 		for (ElencoPreferiti preferito : idFavourites) {
 			idProfiliPreferiti.add(preferito.getIdProfilo());
 		}
 		ArrayList<Profilo> favourites = profiloRepo.findByIdIn(idProfiliPreferiti);
-		System.out.println("Favourites: "+favourites);
+		System.out.println("Favourites: " + favourites);
 		return favourites;
-		
+
 	}
-	
+
 	@Transactional
 	public Selezionatore updateSelezionatoreDetails(RegistrazionePojo selezionatore) {
-		
+
 		Selezionatore newSelezionatore = selezionatoreRepo.findById(selezionatore.getId());
-		
+
 		newSelezionatore.setNome(selezionatore.getNome());
 		newSelezionatore.setCognome(selezionatore.getCognome());
 		newSelezionatore.setEmail(selezionatore.getEmail());
 		newSelezionatore.setStato(selezionatore.getStato());
 		return selezionatoreRepo.save(newSelezionatore);
-		
+
 	}
-	
 
 }
