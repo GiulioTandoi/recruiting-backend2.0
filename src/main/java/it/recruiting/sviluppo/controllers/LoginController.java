@@ -28,7 +28,12 @@ public class LoginController {
 	public @ResponseBody ResponseEntity<Integer> loginUser(@RequestBody LoginControllerPojo logPojo)
 			throws SQLException {
 
-		int id = selezionatoreService.login(logPojo.getEmail(), logPojo.getPassword());
+		int id=-1;
+		try {
+			id = selezionatoreService.login(logPojo.getEmail(), logPojo.getPassword());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (id == -1) {
 			System.out.println("Errore");
 			return new ResponseEntity<>(id, HttpStatus.BAD_REQUEST); // ResponseEntity è un oggetto usato per ritornare

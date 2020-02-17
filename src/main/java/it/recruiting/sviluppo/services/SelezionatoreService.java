@@ -13,7 +13,7 @@ import it.recruiting.sviluppo.entities.Selezionatore;
 import it.recruiting.sviluppo.pojo.RegistrazionePojo;
 import it.recruiting.sviluppo.repos.PreferitiRepository;
 import it.recruiting.sviluppo.repos.ProfiloRepository;
-import it.recruiting.sviluppo.repos.SelezionatoreRepository;
+import it.recruiting.sviluppo.repos.SelezionatoreRepository;	
 
 //Questa è la classe in cui ho i metodi che sfruttano i metodi definiti dalla repository, e questi metodi saranno utilizzati nel controller 
 // durante le chiamate
@@ -29,13 +29,14 @@ public class SelezionatoreService {
 	@Autowired
 	ProfiloRepository profiloRepo;
 
-	public int login(String email, String password) {
+	public int login(String email, String password) throws Exception {
 		System.out.println("Email and password: " + email + " " + password);
 		Selezionatore selezionatore = selezionatoreRepo.findByEmailAndPassword(email, password);
-		System.out.println(selezionatore);
-		if (selezionatore == null) {
-			return -1;
+		if(selezionatore == null) {
+			throw new Exception("Utente non trovato");
 		}
+		
+		
 		return selezionatore.getId();
 	}
 
