@@ -11,5 +11,4 @@ import it.recruiting.sviluppo.entities.ElencoPreferiti;
 public interface PreferitiRepository extends CrudRepository<ElencoPreferiti, Long> {
 
 	public ArrayList<ElencoPreferiti> findByIdSelezionatore(int idselezionatore);
-
 }

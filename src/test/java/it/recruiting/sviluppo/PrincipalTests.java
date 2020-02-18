@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import it.recruiting.sviluppo.entities.ElencoPreferiti;
 import it.recruiting.sviluppo.entities.Profilo;
 import it.recruiting.sviluppo.entities.Selezionatore;
 import it.recruiting.sviluppo.pojo.AggiuntaPreferitoPojo;
@@ -40,6 +41,8 @@ public class PrincipalTests {
 	private int idSelezionatore = 1;
 	private int idProfilo = 1;
 	AggiuntaPreferitoPojo pPojo = new AggiuntaPreferitoPojo(idSelezionatore, idProfilo);
+	ElencoPreferiti preferito = new ElencoPreferiti(idProfilo, idSelezionatore);
+	
 	@BeforeClass
 	public static void initClass() {
 		System.out.println("initClass()");
@@ -75,12 +78,21 @@ public class PrincipalTests {
 	public void testRegistration() {
 		System.out.println(" ========================================= Test Registration ========================================================");
 		assertTrue(selezionatoreService.registration(selezionatore));
+		// Verifico che sia stato effettivamente aggiunto il record effettuando una login con i dati appena inseriti
+		try {
+			assertTrue(selezionatoreService.login(selezionatore.getEmail(), selezionatore.getPassword()) > 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	
 	@Test
 	public void testAddFavourite() {
 		System.out.println(" ========================================= Test Add Favourite ========================================================");
 		assertTrue(profiloService.insertInListaPreferiti(pPojo));
+		// Verifico che sia stato aggiunto ricercando il record per l'id appena inserito
+		assertTrue(selezionatoreService.getFavourites(idSelezionatore).get(pPojo.getIdProfilo()).getId() > 0);
 	}
 	
 	@Test
@@ -88,32 +100,5 @@ public class PrincipalTests {
 		System.out.println(" ========================================= Test Search ========================================================");
 		assertTrue( homeRepo.findByNomeOrCognomeOrQualificaIsContaining("Sofia").get(0) instanceof Profilo );
 	}
-	
-//	@Test
-//	public void test2() {
-//		System.out.println("Test 2");
-//		assertTrue(false);
-//	}
-//
-//	@Test
-//	public void test3() throws Exception {
-//		System.out.println("Test 3");
-//		throw new Exception();
-//	}
-//
-//	@Test(timeout = 100)
-//	public void xyzTesting() throws InterruptedException {
-//		System.out.println("Test xyzTesting");
-//		// fallirà per timeout scaduto
-//		Thread.sleep(200);
-//		assertTrue(true);
-//	}
-//
-//	@Test(expected = java.lang.Exception.class)
-//	public void nuovoTest() throws Exception {
-//		System.out.println("Test nuovoTest");
-//		assertTrue(true);
-//		throw new Exception();
-//	}
 
 }

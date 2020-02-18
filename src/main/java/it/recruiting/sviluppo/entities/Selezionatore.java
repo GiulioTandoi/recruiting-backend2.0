@@ -31,7 +31,7 @@ public class Selezionatore {
 
 	}
 
-	public Selezionatore(String nome, String cognome, String email, String stato, String password) {
+	public Selezionatore(String nome, String cognome, String email,  String password, String stato) {
 
 		this.nome = nome;
 		this.cognome = cognome;

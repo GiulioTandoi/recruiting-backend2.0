@@ -34,8 +34,8 @@ public class RegistrationController {
 //			return new ResponseEntity<>(Stringhe.UTENTEESISTENTE, HttpStatus.CONFLICT);
 //			
 //		}else {
-		selezionatore = new Selezionatore(regPojo.getNome(), regPojo.getCognome(), regPojo.getPassword(),
-				regPojo.getEmail(), regPojo.getStato());
+		selezionatore = new Selezionatore(regPojo.getNome(), regPojo.getCognome(), regPojo.getEmail(), regPojo.getPassword(),
+				regPojo.getStato());
 //		}
 		// effettuo la registrazione
 		boolean creato = selezionatoreService.registration(selezionatore);
