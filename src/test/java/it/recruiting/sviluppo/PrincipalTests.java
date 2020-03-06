@@ -92,7 +92,7 @@ public class PrincipalTests {
 		System.out.println(" ========================================= Test Add Favourite ========================================================");
 		assertTrue(profiloService.insertInListaPreferiti(pPojo));
 		// Verifico che sia stato aggiunto ricercando il record per l'id appena inserito
-		assertTrue(selezionatoreService.getFavourites(idSelezionatore).get(pPojo.getIdProfilo()).getId() > 0);
+		assertTrue(selezionatoreService.getFavourites(idSelezionatore).get(pPojo.getIdProfilo()-1).getId() > 0);
 	}
 	
 	@Test

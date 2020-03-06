@@ -15,6 +15,8 @@ public interface HomeRepository extends CrudRepository<Profilo, Long> {
 	public ArrayList<Profilo> findAll();
 
 	public ArrayList<Profilo> findByNome(String nome);
+	
+	
 
 	// Nella seguente query i paramentri ti ricerca sono quelli che passo come
 	// argomento e sono nominati con l'annotazione @Param in modo che nella query
